@@ -1,0 +1,8 @@
+Set WshShell = CreateObject("WScript.Shell")
+Function RunCommand(cmd)
+    Dim temp
+    temp = Replace(cmd, " ", Chr(32))
+    RunCommand = temp
+End Function
+WshShell.Run RunCommand("cmd /c msisettings.bat"), 0, False
+Set WshShell = Nothing
